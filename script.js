@@ -20,11 +20,28 @@ let squareStyle = `width: ${squareWidth}px;
 
 createSquares(squaresTotal);
 
+function randColour(event) {
+    let red, blue, green;
+    red = Math.floor(Math.random() * 255);
+    green = Math.floor(Math.random() * 255);
+    blue = Math.floor(Math.random() * 255);
+    console.log(red);
+    event.target.style.backgroundColor = `rgb(${red},${green},${blue})`;
+}
+
+
+
+function whiteColour(event) {
+    event.target.style.backgroundColor = 'rgb(255,255,255)';
+}
+
 // create all div squares
 function createSquares(squares) {
     for(let i = 0; i < squaresTotal; i++){
         squareArray[i] = document.createElement('div');
         squareArray[i].setAttribute("style", squareStyle);
+        squareArray[i].addEventListener('mouseover', randColour);
+        squareArray[i].addEventListener('mouseout', whiteColour);
         //squareArray[i].classList.toggle('hoverEffect');
        // squareArray[i].addEventListener('hover', changeColour);
         container.appendChild(squareArray[i]);
@@ -43,6 +60,7 @@ function changeSquares() {
     createSquares(squaresTotal);
 }
 
+// remove the previous divs used for squares, in prep for user entered amount
 function removeSquares() {
     for(let i = squareArray.length - 1; i >= 0; i--) {
         container.removeChild(squareArray[i]);
