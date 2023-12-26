@@ -3,6 +3,7 @@ let squaresPerSide = 16;
 let squaresTotal = squaresPerSide**2;
 let squareArray = []; 
 let currentColor = 'black';
+let randomOn = false;
 
 // Getting and sizing grid  
 const container = document.querySelector('#etch-container');
@@ -34,9 +35,9 @@ chooseDrawBtn.brush = "draw";
 chooseHoverBtn.addEventListener('click', changeBrush);
 chooseHoverBtn.brush = "hover";
 chooseRandomBtn.addEventListener('click', randColour);
-chooseBlackBtn.addEventListener('click', () => currentColor = `rgb(0,0,0)`);
-chooseRedBtn.addEventListener('click', () => currentColor = `rgb(255,0,0)`);
-chooseBlueBtn.addEventListener('click', () => currentColor = `rgb(0,0,255)`);
+chooseBlackBtn.addEventListener('click', () => {currentColor = `rgb(0,0,0)`; randomOn = false;});
+chooseRedBtn.addEventListener('click', () => {currentColor = `rgb(255,0,0)`; randomOn = false;});
+chooseBlueBtn.addEventListener('click', () => {currentColor = `rgb(0,0,255)`; randomOn = false;});
 chooseEraseBtn.addEventListener('click',changeBrush); 
 chooseEraseBtn.brush = "erase";
 
@@ -51,11 +52,17 @@ function randColour(event) {
     green = Math.floor(Math.random() * 255);
     blue = Math.floor(Math.random() * 255);
     currentColor = `rgb(${red},${green},${blue})`;
+    console.log(currentColor);
+    randomOn = true;
     // event.target.style.backgroundColor = `rgba(${red},${green},${blue},${alpha})`;
 }
 
 // yet to be implemented 
 function chooseColour(event) {
+    if(randomOn) {
+        randColour();
+        console.log(currentColor);
+    }
     console.log(event.target.style.opacity);
     event.target.style.backgroundColor = currentColor;
     if(event.target.style.opacity == 1) {
@@ -71,6 +78,9 @@ function chooseColour(event) {
 
 // for hover - full opacity
 function chooseColourHover(event) {
+    if(randomOn) {
+        randColour();
+    }
     event.target.style.backgroundColor = currentColor;
     event.target.style.opacity = '1';
 }
