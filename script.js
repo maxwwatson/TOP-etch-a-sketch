@@ -1,22 +1,21 @@
 // allow user to change this later 
-const squaresPerSide = 16;
-const squaresTotal = squaresPerSide**2;
-const squareArray = []; 
+let squaresPerSide = 16;
+let squaresTotal = squaresPerSide**2;
+let squareArray = []; 
 
-// let elements = document.getEleementsByTagName('div');
+// setup button
+const chooseSquaresBtn = document.querySelector("#choose-square");
+chooseSquaresBtn.addEventListener('click', changeSquares);
 
-// references 
+// Getting and sizing grid  
 const container = document.querySelector('#etch-container');
 const containerWidth = container.clientWidth;
 const containerHeight = container.clientHeight;
-console.log(container.clientWidth);
-console.log(containerWidth + " ff " + containerHeight);
 
-const squareWidth = containerWidth / squaresPerSide;
-const squareHeight = containerHeight / squaresPerSide;
-console.log(`squareWidth ${squareWidth} totalW ${squareWidth * squaresTotal}`)
+let squareWidth = containerWidth / squaresPerSide;
+let squareHeight = containerHeight / squaresPerSide;
 
-const squareStyle = `width: ${squareWidth}px;
+let squareStyle = `width: ${squareWidth}px;
                      height: ${squareHeight}px;`
 
 createSquares(squaresTotal);
@@ -32,8 +31,32 @@ function createSquares(squares) {
     }
 }
 
-/*
-function changeColour(event) {
-    this.classList.toggle('')
+function changeSquares() {
+    let response;
+    do
+    {
+        response = parseInt(prompt("Enter new numbers of Squares per side (must be less than 100)"));
+        squaresPerSide = response;
+    } while (response <=0  && response > 100) 
+    removeSquares();
+    updateGridVariables(); 
+    createSquares(squaresTotal);
 }
-*/
+
+function removeSquares() {
+    for(let i = squareArray.length - 1; i >= 0; i--) {
+        container.removeChild(squareArray[i]);
+        squareArray.pop();
+    }   
+}
+
+// update grid every time button change squares is pushd with its function
+// executed
+function updateGridVariables () {
+    squaresTotal = squaresPerSide**2;
+    squareWidth = containerWidth / squaresPerSide;
+    squareHeight = containerHeight / squaresPerSide;
+    squareStyle = `width: ${squareWidth}px;
+                   height: ${squareHeight}px;`
+    
+}
