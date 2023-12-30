@@ -11,24 +11,33 @@
     <div id="page-container">
         <h1 id="title">Etch a Sketch</h1>
         <p class="author">by Max Watson</p>
-        <button id="choose-square">Choose # of Squares</button>
-        <div>
-            <span>
-                <button id="draw" value="draw">Draw</button>
-                <button id="hover" value="hover">Hover</button>
-                <button id="erase" value="erase">Erase All</button>
-            </span>
+        <div id="content-container">
+            <div id="selections">
+                <button id="choose-square">Choose Gridsizes</button>
+                <div class="selections-1">
+                    <div class="tools">
+                        <button id="draw" value="draw">Draw</button>
+                        <button id="hover" value="hover">Hover</button>
+                        <button id="erase" value="erase">Erase All</button>
+                    </div>
+                    <div class="colours">
+                            <button id="colourRandom" value="random">Colour: Random</button>
+                            <button id="colourBlack" value="black">Colour: black</button>
+                            <button id="colourRed" value=red>Colour: red</button>
+                            <button id="colourBlue" value="blue">Colour: blue</button>
+                    </div>
+                </div>
+            </div>
+            <div id="etch-container">
+            </div>
         </div>
-        <div>
-            <span>
-                <button id="colourRandom" value="random">Colour: Random</button>
-                <button id="colourBlack" value="black">Colour: black</button>
-                <button id="colourRed" value=red>Colour: red</button>
-                <button id="colourBlue" value="blue">Colour: blue</button>
-            </span>
-        </div>
-        <div id="etch-container">
-        </div>
+        <!-- footer -->
+        <footer id="footer-container">
+            <p>Made by Max Watson</p>
+            <p>Learn to code at <a href="https://www.theodinproject.com/">
+                The Odin Project
+            </a></p>
+        </footer>
     </div>
 </body>
 </html>
